@@ -37,8 +37,23 @@ const addEvents = (ctx) => {
   // Private events listeners list
   const privateEvents = {
     input: {
+      compositionstart() {
+        ctx.input.composing = true;
+      },
+      compositionend() {
+        if (ctx.input.composing) {
+          ctx.input.composing = false;
+          ctx.eventTrigger(ctx.input, "input");
+        }
+      },
+      change() {
+        if (ctx.input.composing) {
+          ctx.input.composing = false;
+          ctx.eventTrigger(ctx.input, "input");
+        }
+      },
       input() {
-        run();
+        !ctx.input.composing && run();
       },
       keydown(event) {
         navigate(event, ctx);

@@ -76,7 +76,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development rollup -c -w",
-    "build": "NODE_ENV=production rollup -c",
+    "build": "set NODE_ENV=production && rollup -c",
     "docs": "jsdoc -c jsdocs.json"
   },
   "license": "Apache-2.0",

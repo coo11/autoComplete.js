@@ -30,14 +30,14 @@ export default [
       {
         file: `./${pkg.browser}`,
         name: libName,
-        format: "umd",
+        format: "iife",
       },
-      {
+      /* {
         file: "./docs/demo/js/autoComplete.min.js",
         name: libName,
-        format: "umd",
+        format: "iife",
         // sourcemap: isProduction ? false : "inline",
-      },
+      }, */
     ],
     plugins: [
       nodent({
@@ -68,14 +68,14 @@ export default [
       {
         file: `./${pkg.main}`,
         name: libName,
-        format: "umd",
+        format: "es",
       },
-      {
+      /* {
         file: "./docs/demo/js/autoComplete.js",
         name: libName,
-        format: "umd",
+        format: "iife",
         // sourcemap: isProduction ? false : "inline",
-      },
+      }, */
     ],
     plugins: [
       nodent({
@@ -85,11 +85,11 @@ export default [
         noRuntime: true,
         es6target: true,
       }),
-      babel({
+      /* babel({
         babelHelpers: "bundled",
         exclude: "node_modules/**",
         presets: ["@babel/preset-env"],
-      }),
+      }), */
       cleanup(),
       gzipPlugin(),
       // Analyzer
@@ -100,7 +100,7 @@ export default [
       }),
       sizes(),
       // Server
-      !isProduction &&
+      /* !isProduction &&
         serve({
           open: true,
           openPage: "./docs/demo/index.html",
@@ -110,7 +110,7 @@ export default [
           contentBase: "./docs/demo",
         }),
       // Live Reload
-      !isProduction && livereload({ watch: ["./docs/demo/", "./src/"] }),
+      !isProduction && livereload({ watch: ["./docs/demo/", "./src/"] }), */
     ],
   },
 ];

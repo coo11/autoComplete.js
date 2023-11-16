@@ -37,6 +37,7 @@ const render = (ctx) => {
   if (matches.length || resultsList.noResults) {
     const fragment = new DocumentFragment();
 
+    const cls = resultItem.selected ? resultItem.selected.split(" ") : false;
     // Generate results elements
     results.forEach((result, index) => {
       // Create new list item
@@ -46,6 +47,32 @@ const render = (ctx) => {
         innerHTML: result.match,
         inside: fragment,
         ...(resultItem.class && { class: resultItem.class }),
+      });
+
+      element.addEventListener("touchstart", () => cls && element.classList.add(...cls));
+      element.addEventListener("touchend", () => cls && element.classList.remove(...cls));
+
+      element.addEventListener("mouseenter", (event) => {
+        if (event.timeStamp - ctx.allowMouseEventAfter > 500) {
+          let state = ctx.cursor;
+          ctx.cursor = index;
+          if (cls) {
+            element.classList.add(...cls);
+            if (state > -1 && index != state) {
+              element.parentElement.children[state].classList.remove(...cls);
+            }
+          }
+        }
+      });
+
+      element.addEventListener("mouseleave", (event) => {
+        if (event.timeStamp - ctx.allowMouseEventAfter > 500) {
+          const target = event.relatedTarget;
+          if (target && !target.id.startsWith(resultItem.id)) {
+            ctx.cursor = -1;
+            cls && element.classList.remove(...cls);
+          }
+        }
       });
 
       // If custom content is active pass params
@@ -219,6 +246,10 @@ const click = (event, ctx) => {
 
   // Check if clicked item is a "result" item
   if (item && item.nodeName === itemTag) {
+    if (/android/gi.test(window.navigator.userAgent)) {
+      ctx.input.blur();
+      ctx.input.focus();
+    }
     select(ctx, event, items.indexOf(item));
   }
 };
@@ -236,6 +267,7 @@ const navigate = (event, ctx) => {
     case 40:
     case 38:
       event.preventDefault();
+      ctx.allowMouseEventAfter = event.timeStamp;
       // Move cursor based on pressed key
       event.keyCode === 40 ? next(ctx) : previous(ctx);
 

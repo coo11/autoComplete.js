@@ -63,6 +63,14 @@ export default function autoComplete(config) {
     maxResults: 5,
   };
   this.resultItem = { tag: "li" };
+  this.allowMouseEventAfter = 0;
+  this.cancelIfInputNothing = false;
+  this.eventTrigger = (element, type) => {
+    const event = document.createEvent("HTMLEvents");
+    event.initEvent(type, true, true);
+    element.dispatchEvent(event);
+  };
+
   // Set all Configuration options
   configure(this);
   // Stage API methods

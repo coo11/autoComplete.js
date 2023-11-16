@@ -15,7 +15,7 @@
 <br>
 <p align="center">
 	<a href="https://tarekraafat.github.io/autoComplete.js/">
-  		<img src="./docs/img/autoComplete.js.png" alt="autoComplete.js Design" width="50%">
+  		<img src="https://raw.githubusercontent.com/coo11/autoComplete.js/60329e55b38abe521517f608597f0dc4bf5869c7/docs/img/autoComplete.js.png" alt="autoComplete.js Design" width="50%">
 	</a>
 </p>
 <br>
@@ -40,38 +40,14 @@ autoComplete.js is a simple, pure vanilla Javascript library progressively desig
 -  Works on anything <small>(`<input>`, `<textarea>` and `contentEditable` elements)</small>
 -  Well Documented
 
-[![autoComplete.js Code Example](./docs/img/autoComplete.init.png "autoComplete.js Code Example")](https://codepen.io/tarekraafat/pen/rQopdW?editors=0010)
-
 ## Getting Started
 
-### Installation:
+### What's this fork version changed
 
-#### CDN
-
-`JS`
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
-```
-
-`CSS`
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
-```
-#### Package Manager
-
--   <a href="https://www.npmjs.com/package/@tarekraafat/autocomplete.js">npm</a> install `(Node Package Manager)`
-
-```shell
-npm i @tarekraafat/autocomplete.js
-```
-
--   <a href="https://yarn.pm/@tarekraafat/autocomplete.js">Yarn</a> install `(Javascript Package Manager)`
-
-```shell
-yarn add @tarekraafat/autocomplete.js
-```
+- Solve the conflict between the arrow keys and mouse hover on dropdown list
+- Not show dropdown menu if Backspace long pressed
+- Touch event trigger highlight
+- Add text composition event listeners 
 
 <!-- * * * -->
 

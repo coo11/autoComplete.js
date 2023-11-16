@@ -21,6 +21,8 @@ export default async function (ctx, q) {
     await getData(ctx, queryVal);
     // Check if data fetch failed
     if (ctx.feedback instanceof Error) return;
+    // Check if backspace long pressed and input value is blank
+    if (ctx.cancelIfInputNothing && !ctx.input.value) return;
     // Find matching results to the query
     findMatches(queryVal, ctx);
     // Render "resultsList"
